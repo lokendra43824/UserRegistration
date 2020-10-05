@@ -7,7 +7,7 @@ namespace UserRegistration
     {
         static void Main(string[] args)
         {
-            string firstName,lastName;
+            string firstName,lastName,emailId;
             Console.WriteLine("Welcome to user registration");
             Console.WriteLine("Enter your first name: ");
             firstName = Console.ReadLine();
@@ -22,9 +22,17 @@ namespace UserRegistration
             while (!(validateName(lastName)))
             {
                 Console.WriteLine("Please enter a valid last name");
-                firstName = Console.ReadLine();
+                lastName = Console.ReadLine();
             }
             Console.WriteLine("You have entered a valid last name");
+            Console.WriteLine("Enter your emailId: ");
+            emailId = Console.ReadLine();
+            while (!(validateEmailId(emailId)))
+            {
+                Console.WriteLine("Please enter a valid emailId");
+                emailId = Console.ReadLine();
+            }
+            Console.WriteLine("You have entered a valid emailId");
 
         }
 
@@ -41,5 +49,19 @@ namespace UserRegistration
             return false;
         }
     }
-}
+        public static bool validateEmailId(string emailId)
+        {
+            string pattern = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+            Regex re = new Regex(pattern);
+            if (re.IsMatch(emailId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+    }
 }
